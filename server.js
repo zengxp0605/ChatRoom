@@ -102,6 +102,7 @@ io.on('connection',function(socket){
       *		  比如在同一个频道/room 中订阅同一个频道即可
       *
       ***********************************/
+/*
      try{
 		 var redis = require('redis').createClient(6379,'127.0.0.1');
 		 redis.subscribe('channel_1');
@@ -112,7 +113,7 @@ io.on('connection',function(socket){
 	}catch(e){
 		console.log('redis error: ',e);
 	}	 
-
+*/
 
 	/********************test2: 发送消息给指定的用户，需要知道对方的socket_id**********************/
 	 socket.on('say-to-someone', function(socket_id, msg){
