@@ -16,15 +16,15 @@ console.log('server started.');
 //  test1 end
 ************************/
 
-var express = require('express')
+var express = require('express');
 var app = express();
-var server = require('http').createServer(app);
+var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
 var userList = {}; // 在线用户昵称列表
 
 app.use('/',express.static(__dirname + '/www')); //指定静态资源目录
-server.listen(80);
-console.log('server started. listening on port 80' );
+server.listen(5001);
+console.log('server started. listening on port *5001' );
 
 /****** test of namespace
 Server.js
