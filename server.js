@@ -22,9 +22,11 @@ var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
 var userList = {}; // 在线用户昵称列表
 
+var port = process.env.PORT || 5001;
+
 app.use('/',express.static(__dirname + '/www')); //指定静态资源目录
-server.listen(5001);
-console.log('server started. listening on port *5001' );
+server.listen(port);
+console.log('server started. listening on port *' + port );
 
 /****** test of namespace
 Server.js
