@@ -53,7 +53,7 @@ io.on('connection',function(socket){
 		if('undefined' == (typeof userList[_rid]))
 			userList[_rid] = [];
 		if(userList[_rid].indexOf(nickname) > -1){
-			socket.emit('nickExisted');
+			socket.emit('nickExisted',{port:port});
 			return;
 		}else{
 			socket.join(_rid);
