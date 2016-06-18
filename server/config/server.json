@@ -1,0 +1,6 @@
+{
+    "port": 5001,
+    "dev_model": 1, 
+    "need_redis": true,
+    "redis": "redis://127.0.0.1:6379/1"
+}

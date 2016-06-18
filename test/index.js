@@ -14,3 +14,10 @@ t2.showMsg();
 
 
 console.log('index init',t1,t2);
+
+global.a = null;
+
+require('./lib/test3')
+
+console.log(a);
+

@@ -1,42 +1,29 @@
-/*****************  
-//test1 start
-var http = require('http');
+/**
+ * server.js
+ * @Author: Jason Zeng
+ * @Email:  xiaoping_zeng@faxmail.com
+ * @Date:   2016-3-6 
+ */
+ 'use strict';
 
-var server =  http.createServer(function(req,res){
-	res.writeHead(200,{
-		'Content-type':'text/plain'
-	});
-	res.write('hello world!');
-	res.end();
-});
+ var express = require('express');
+ global.app = express();
 
-server.listen(80);
-console.log('server started.');
-
-//  test1 end
-************************/
-
-var express = require('express');
-var app = express();
-var server = require('http').Server(app);
-var io = require('socket.io').listen(server);
-var userList = {}; // 在线用户昵称列表
-
-var port = process.env.PORT || 5001;
+app.logger = require('./server/modules/logger');
 
 app.use('/',express.static(__dirname + '/www')); //指定静态资源目录
-server.listen(port);
-console.log('server started. listening on port *' + port );
 
-/****** test of namespace
-Server.js
-	var m_io = io.of('/my-namespace');
-	m_io.on('connection',function(socket){ });
+require('./server/modules/bootstrap')();
 
-Client.js
-	var socket = io.connect('/my-namespace');
-******/
-// io.sockets.on('connection',function(socket){
+
+process.on('uncaughtException', function (err) {
+	console.error('uncaughtException : ',err);
+});
+
+return;
+
+
+var userList = {}; // 在线用户昵称列表
 io.on('connection',function(socket){
 	console.log('io connection [ok]');
 	socket.on('sendMsg',function(msg,color){
@@ -87,11 +74,11 @@ io.on('connection',function(socket){
 	    
 	    //console.log('disconnect',socket);
 	    console.info('Current userList:');
-		console.log(userList);
+	    console.log(userList);
 	});
 
 	//接收用户发来的图片
-	 socket.on('img', function(imgData) {
+	socket.on('img', function(imgData) {
 	    //通过一个newImg事件分发到除自己外的每个用户
 	     //socket.broadcast.emit('newImg', socket.username, imgData);
 	     socket.to(socket.roomId).emit('newImg', socket.username, imgData);
@@ -115,13 +102,13 @@ io.on('connection',function(socket){
 	}catch(e){
 		console.log('redis error: ',e);
 	}	 
-*/
+	*/
 
 	/********************test2: 发送消息给指定的用户，需要知道对方的socket_id**********************/
-	 socket.on('say-to-someone', function(socket_id, msg){
-	 	console.log('say-to-someone | socket_id: ',id,' message: ',msg);
-    	socket.broadcast.to(id).emit('my-message', msg);
-  	});
+	socket.on('say-to-someone', function(socket_id, msg){
+		console.log('say-to-someone | socket_id: ',id,' message: ',msg);
+		socket.broadcast.to(id).emit('my-message', msg);
+	});
 
 	/********************test3: get data from client::send()******************************/ 
 	socket.on('message',function(data){

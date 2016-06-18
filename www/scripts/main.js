@@ -146,7 +146,18 @@ var _$ = function(_id){
 		 	// 测试：服务端获取客户端的回调函数，服务端调用后【实际在客户端执行】
 		 	socket.emit('test-fn', 'some data', function (data) {
 		      console.info(data); // run at client,data will be 'my-flag-server' [from server]
-          });
+            });
+
+            socket.emit('router',{
+                cmd:'test::foo',
+                params:{
+                    id:100,
+                    name:'jason'
+                }
+            });
 		 }
 		 test3();
+         socket.on('router',(data) => {
+               console.info(data); 
+         });
         }(window._$);
