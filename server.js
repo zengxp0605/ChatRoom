@@ -9,6 +9,9 @@
  var express = require('express');
  global.app = express();
 
+app.userList = {};
+app.socketList = {};
+
 app.logger = require('./server/modules/logger');
 
 app.use('/',express.static(__dirname + '/www')); //指定静态资源目录
@@ -21,6 +24,7 @@ process.on('uncaughtException', function (err) {
 });
 
 return;
+
 
 
 var userList = {}; // 在线用户昵称列表

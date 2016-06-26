@@ -34,5 +34,16 @@ exports.emit = (socket,data,cb) => {
  //        }
  //    }
 
- // module.exports = Tools;
+
+exports.isHook = (cb) => {
+    var hookFile = __dirname + '/../../ctrl/hook.js';
+    require('fs').exists(hookFile, (flag) => {
+        if(flag){
+            cb(require(hookFile));
+        } else {
+            cb(false);
+        }
+    });
+};
+
  

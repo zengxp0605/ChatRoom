@@ -5,11 +5,11 @@
  * @Date:   2016-3-15
  */
 'use strict';
+console.log(11111);
 
+exports.ter = (a) => {
 
-exports.ter (a){
-
-    console.log(11111);
+    console.log(222222);
     
 }
 

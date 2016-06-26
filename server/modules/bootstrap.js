@@ -39,7 +39,7 @@ let _connRedis = (redisUrl,success) => {
         retry_max_delay:100,
         connect_timeout:2000,
    }
-   var client = require('redis').createClient(redisUrl,opts);
+   var client = require('ioredis').createClient(redisUrl,opts);
 
     client.on('error',(err) => {
         if(err.code === 'CONNECTION_BROKEN' && flag === 0){
