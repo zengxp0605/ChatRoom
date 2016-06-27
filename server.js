@@ -1,3 +1,18 @@
+// var webpack = require('webpack');
+// var WebpackDevServer = require('webpack-dev-server');
+// var config = require('./webpack.config');
+
+// new WebpackDevServer(webpack(config), {
+//   publicPath: config.output.publicPath,
+//   hot: true,
+//   historyApiFallback: true
+// }).listen(3000, 'localhost', function (err, result) {
+//   if (err) console.log(err);
+//   console.log('Listening at localhost:3000');
+// });
+
+// return;
+
 /**
  * server.js
  * @Author: Jason Zeng
@@ -14,7 +29,7 @@ app.socketList = {};
 
 app.logger = require('./server/modules/logger');
 
-app.use('/',express.static(__dirname + '/www')); //指定静态资源目录
+app.use('/',express.static(__dirname + '/public')); //指定静态资源目录
 
 require('./server/modules/bootstrap')();
 

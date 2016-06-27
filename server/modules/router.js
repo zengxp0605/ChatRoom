@@ -51,7 +51,7 @@ let _dispatch = (socket,data) => {
     let aryCmd = data.cmd.split('.');
 
     try{
-        let _mod = require('../../ctrl/' + aryCmd[0]);
+        let _mod = require('../../app/' + aryCmd[0]);
         _mod[aryCmd[1]](data.params, socket); // 动态调用路由方法
     }catch(e){
         app.logger.error(e);
